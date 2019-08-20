@@ -1,4 +1,6 @@
 require "cep_brasil/version"
+require 'cep_brasil/random/random'
+require 'cep_brasil/api/json'
 
 module CepBrasil
   class RandomCep
@@ -9,19 +11,15 @@ module CepBrasil
 
     def parse_cep
       unless @cep.nil?
-        cep = @cep.to_s
-        valid =  @cep =~ /[^0-9]/
-        if valid == 0
+        if @cep.size == 8
+          cep = @cep.to_s
+          valid =  @cep =~ /[^0-9]/
+          return valid_cep = @cep[0..4] + '-' + @cep[5..7] if valid.nil?
           return 'Caracteres inválido, favor utilizar so numeros'
         else
-        valid_cep = @cep[0..4] + '-' + @cep[5..7]
+          return 'Necessário informar 8 numeros'
         end
       end
-    end
-
-    def generate_cep
-      @cep = rand(1111111..99999999) if @cep.nil
-      valid_cep = @cep[0..4] + '-' + @cep[5..7]
     end
 
   end
