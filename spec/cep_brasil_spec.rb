@@ -94,6 +94,7 @@ RSpec.describe CepBrasil do
     it 'returns a response a resource uf' do
       endereco = CepBrasil::Address::Generate.new('01001001', 'json')
       expect(endereco.uf).to eq 'SP'
+      puts endereco.logradouro
     end
 
   end

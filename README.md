@@ -29,6 +29,7 @@ Example of usage:
 require 'cep_brasil'
 
 
+Generates a Random CEP
 CepBrasil::Random.generate_formated #=> "010050101"
 
 
