@@ -94,7 +94,12 @@ RSpec.describe CepBrasil do
     it 'returns a response a resource uf' do
       endereco = CepBrasil::Address::Generate.new('01001001', 'json')
       expect(endereco.uf).to eq 'SP'
-      puts endereco.logradouro
+    end
+
+    it 'teste' do
+      gen = CepBrasil::Random.generate_formated
+      endereco = CepBrasil::Address::Generate.new('04945-220', 'json')
+      puts endereco.full_address
     end
 
   end
