@@ -29,8 +29,15 @@ Example of usage:
 require 'cep_brasil'
 
 
-Generates a Random CEP
+#Generates a Random CEP
+
 CepBrasil::Random.generate_formated #=> "010050101"
+
+#Create a address object by pass a CEP and format
+
+endereco = CepBrasil::Address::Generate.new('01001001', 'json') #=> "Object"
+endereco.cep #=> "010050101"
+endereco.logradouro #=> "Praça da Sé"
 
 
 ```
