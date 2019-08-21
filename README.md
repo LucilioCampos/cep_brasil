@@ -39,6 +39,8 @@ endereco = CepBrasil::Address::Generate.new('01001001', 'json') #=> "Object"
 endereco.cep #=> "010050-101"
 endereco.logradouro #=> "Praça da Sé"
 
+## The random generates not necessarily generates a valid cep, it´s good to use for a tests
+## The Address object with valid cep build a valid address
 
 ```
 

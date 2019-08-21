@@ -10,8 +10,7 @@ module CepBrasil
       attr_reader :localidade, :uf, :unidade, :ibge, :gia, :endereco
 
       def initialize(cep_entry, response_type)
-        @response_type = response_type
-        @cep_entry = cep_entry
+        cep_entry = normalize cep_entry
         params = connect cep_entry, response_type
         @cep = params['cep']
         @logradouro ||= params['logradouro']
@@ -26,7 +25,7 @@ module CepBrasil
       end
 
       def full_address
-        @endereco = {
+        endereco = {
           cep: @cep,
           logradouro: @logradouro,
           complemento: @complemento,
@@ -39,11 +38,17 @@ module CepBrasil
         }
       end
 
-      private
 
+      private
+      
       def connect(cep_entry, response_type)
-        @request = "#{BASE_URL}/#{cep_entry}/#{response_type}"
-        params = JSON.parse RestClient.get(@request)
+        request = "#{BASE_URL}/#{cep_entry}/#{response_type}"
+        params = RestClient.get(request)
+        JSON.parse(params)
+      end
+
+      def normalize(cep)
+        normalcep = cep.gsub('-', '')
       end
 
 
