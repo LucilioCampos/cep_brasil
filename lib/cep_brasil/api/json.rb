@@ -4,7 +4,7 @@ require 'json'
 module CepBrasil::Api
   BASE_URL = "viacep.com.br/ws"
   class Json
-    attr_reader :request, :response
+    attr_reader :request, :response, :endereco
 
     def initialize(response_type, cep)
       @response_type = response_type

@@ -41,7 +41,7 @@ RSpec.describe CepBrasil do
       expect(response.get_cep.code).to eq 200
     end
 
-    it 'returns a resource bairro' do
+    it 'returns a resource cep' do
       new_cep = CepBrasil::Api::Json.new('json', '01001001')
       expect(JSON.parse(new_cep.get_cep)['cep']).to eq '01001-001'
     end
@@ -64,6 +64,36 @@ RSpec.describe CepBrasil do
     it 'returns a response a resource uf' do
       new_cep = CepBrasil::Api::Json.new('json', '01001001')
       expect(JSON.parse(new_cep.get_cep)['uf']).to eq 'SP'
+    end
+
+    it 'returns a full address' do
+      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
+      expect(endereco.full_address.size).to eq 9
+    end
+
+    it 'returns a resource cep' do
+      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
+      expect(endereco.cep).to eq '01001-001'
+    end
+
+    it 'returns a response a resource bairro' do
+      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
+      expect(endereco.bairro).to eq 'Sé'
+    end
+
+    it 'returns a response a resource complemento' do
+      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
+      expect(endereco.complemento).to eq 'lado par'
+    end
+
+    it 'returns a response a resource localidade' do
+      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
+      expect(endereco.localidade).to eq 'São Paulo'
+    end
+
+    it 'returns a response a resource uf' do
+      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
+      expect(endereco.uf).to eq 'SP'
     end
 
   end
