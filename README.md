@@ -1,6 +1,6 @@
 # CepBrasil
 
-This gem was created to make my applications tests more easy. I will do it some updates and I'll be happy if you want to help me
+This gem was created to make my applications tests more easy. I will update soon and I'll be happy if you want to help me
 
 
 ## Installation
