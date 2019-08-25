@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cep_brasil (0.1.0)
+    cep_brasil (0.1.1)
 
 GEM
   remote: https://rubygems.org/
