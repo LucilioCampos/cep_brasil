@@ -1,4 +1,3 @@
-
 require 'rest-client'
 module CepBrasil
   module Address
@@ -50,7 +49,6 @@ module CepBrasil
       def normalize(cep)
         normalcep = cep.gsub('-', '')
       end
-
 
     end
   end
