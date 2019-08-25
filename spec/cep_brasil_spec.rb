@@ -38,36 +38,44 @@ RSpec.describe CepBrasil do
       expect(cep.size).to eq 9
     end
 
+  end
+
+  context 'When generate an Address' do
+    
+    before :all do
+      @endereco = CepBrasil::Address::Generate.new('01001001', 'json')
+    end
+
     it 'returns a full address' do
-      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
-      expect(endereco.full_address.size).to eq 9
+      expect(@endereco.full_address.size).to eq 9
     end
 
     it 'returns a resource cep' do
-      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
-      expect(endereco.cep).to eq '01001-001'
+      expect(@endereco.cep).to eq '01001-001'
     end
 
     it 'returns a response a resource bairro' do
-      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
-      expect(endereco.bairro).to eq 'Sé'
+      expect(@endereco.bairro).to eq 'Sé'
     end
 
     it 'returns a response a resource complemento' do
-      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
-      expect(endereco.complemento).to eq 'lado par'
+      expect(@endereco.complemento).to eq 'lado par'
     end
 
     it 'returns a response a resource localidade' do
-      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
-      expect(endereco.localidade).to eq 'São Paulo'
+      expect(@endereco.localidade).to eq 'São Paulo'
     end
 
     it 'returns a response a resource uf' do
-      endereco = CepBrasil::Address::Generate.new('01001001', 'json')
-      expect(endereco.uf).to eq 'SP'
+      expect(@endereco.uf).to eq 'SP'
     end
 
+    it 'returns a exception without arguments' do
+      expect { 
+        CepBrasil::Address::Generate.new 
+      }.to raise_error(ArgumentError)
+    end
+    
   end
 
 end
