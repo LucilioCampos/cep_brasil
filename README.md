@@ -31,15 +31,19 @@ require 'cep_brasil'
 
 #Generates a Random CEP
 
-CepBrasil::Random.generate_formated #=> "010050-101"
+CepBrasil::Random.generate_formatted #=> "010050-101"
+
+or
+
+CepBrasil::Random.generate_formatted('12345678') #=> "12345-678"
 
 #Create a address object by pass a CEP and content type, ex: json, xml
 
-endereco = CepBrasil::Address::Generate.new('01001001', 'json') #=> "Object"
+endereco = CepBrasil::Address::Generate.new('01001001', 'json') #=> "<Address Object>"
 endereco.cep #=> "010050-101"
 endereco.logradouro #=> "Praça da Sé"
 
-## The random generates not necessarily generates a valid cep, it´s good to use for a tests
+## The random generates not necessarily generates a valid cep, it´s recomend to using in tests
 ## The Address object with valid cep build a valid address
 
 ```
