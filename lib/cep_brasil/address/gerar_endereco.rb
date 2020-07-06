@@ -1,11 +1,13 @@
-require 'rest-client'
 require 'json'
+
 module CepBrasil
   module Address
 
-    BASE_URL = "viacep.com.br/ws"
+    BASE_URL = "https://viacep.com.br/ws"
+  
 
     class Generate
+      include Request
       attr_reader :cep, :logradouro, :complemento, :bairro
       attr_reader :localidade, :uf, :unidade, :ibge, :gia, :endereco
 
@@ -43,8 +45,7 @@ module CepBrasil
       
       def connect(cep_entry, response_type)
         request = "#{BASE_URL}/#{cep_entry}/#{response_type}"
-        params = RestClient.get(request)
-        JSON.parse(params)
+        params = get(request)
       end
 
       def normalize(cep)

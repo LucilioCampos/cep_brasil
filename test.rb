@@ -1,0 +1,1 @@
+require 'cep_brasil'
